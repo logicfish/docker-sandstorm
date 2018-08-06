@@ -6,17 +6,16 @@ ENV \
   COMPILER="vagrant-spk dev"
 
 RUN apt-get update \
- && apt-get install -y gosu git virtualbox-dkms linux-headers-lowlatency vagrant \
- && /etc/init.d/vboxdrv setup
+ && apt-get install -y gosu git virtualbox-dkms linux-headers-lowlatency vagrant 
 
-RUN git clone https://github.com/sandstorm-io/vagrant-spk.git \
- && cd vagrant-spk && ln -s $PWD/vagrant-spk /usr/bin/vagrant-spk && cd .. \
- && VBoxManage --version
 
-RUN git clone https://github.com/meteor/clock && cd clock \
- && vagrant-spk setupvm meteor \
- && vagrant-spk vm up \
- && vagrant-spk pack ../clock.spk 
+RUN curl https://install.sandstorm.io | bash
+
+RUN mkdir -p ~/projects/meteor-spk \
+ && cd ~/projects/meteor-spk \
+ && curl https://dl.sandstorm.io/meteor-spk-0.4.1.tar.xz | tar Jxf - \
+ && cd meteor-spk-0.4.1
+ && ln -s $PWD/meteor-spk /usr/bin/meteor-spk
 
 COPY entrypoint.sh /
 RUN chmod +x /entrypoint.sh
