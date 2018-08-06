@@ -8,9 +8,6 @@ ENV \
 RUN apt-get update \
  && apt-get install -y gosu git virtualbox-dkms linux-headers-lowlatency vagrant 
 
-
-RUN curl https://install.sandstorm.io | bash
-
 RUN mkdir -p ~/projects/meteor-spk \
  && cd ~/projects/meteor-spk \
  && curl https://dl.sandstorm.io/meteor-spk-0.4.1.tar.xz | tar Jxf - \
