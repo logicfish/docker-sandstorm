@@ -14,7 +14,7 @@ RUN curl https://install.sandstorm.io | bash
 RUN mkdir -p ~/projects/meteor-spk \
  && cd ~/projects/meteor-spk \
  && curl https://dl.sandstorm.io/meteor-spk-0.4.1.tar.xz | tar Jxf - \
- && cd meteor-spk-0.4.1
+ && cd meteor-spk-0.4.1 \
  && ln -s $PWD/meteor-spk /usr/bin/meteor-spk
 
 COPY entrypoint.sh /
